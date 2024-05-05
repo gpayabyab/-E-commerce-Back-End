@@ -16,26 +16,32 @@ Product.init(
       autoIncrement: true,
     },
     product_name: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     price: {
       // decimal type 
-      type: DataTypes.
+      type: DataTypes.DECIMAL,
       allowNull: false,
       //validates that the value is a decimal
+      validate: {
+        isDecimal: true
+      }
     },
     stock: {
       type: DataTypes.INTEGER,
       allowNull: false,
       //set a default value of 10
-      //validates that the value is a decimal
+      //validates that the value is a numeric
+      validate: {
+        isNumeric: true
+      }
     },
     category_id: {
       type: DataTypes.INTEGER,
       references: {
         // This references the `category` model, which we set in `Category.js` as its `modelName` property
-        model: 'category_name',
+        model: 'category',
         key: 'id',
       },
     },
